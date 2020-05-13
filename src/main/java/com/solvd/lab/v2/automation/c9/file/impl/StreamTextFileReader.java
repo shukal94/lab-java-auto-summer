@@ -1,8 +1,8 @@
-package com.solvd.lab.v2.automation.c9.reader.impl;
+package com.solvd.lab.v2.automation.c9.file.impl;
 
-import com.solvd.lab.v2.automation.c9.base.BaseReader;
-import com.solvd.lab.v2.automation.c9.exception.UnableToReadException;
-import com.solvd.lab.v2.automation.c9.interfaces.Reader;
+import com.solvd.lab.v2.automation.c9.file.base.BaseReader;
+import com.solvd.lab.v2.automation.c9.file.exception.UnableToReadException;
+import com.solvd.lab.v2.automation.c9.file.interfaces.Reader;
 
 import java.io.*;
 
@@ -16,11 +16,11 @@ public class StreamTextFileReader extends BaseReader implements Reader {
         super(path);
     }
 
+    @Override
     public String read() throws UnableToReadException{
         try(FileInputStream fin = new FileInputStream(this.file)) { // try withou resources
             byte[] buffer = new byte[fin.available()];
-            fin.read(buffer, 0, buffer.length);
-            //return Arrays.toString(buffer); wtf???
+            fin.read(buffer);
             return new String(buffer);
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,14 +1,10 @@
-package com.solvd.lab.v2.automation.c9.reader.impl;
+package com.solvd.lab.v2.automation.c9.file.impl;
 
-import com.solvd.lab.v2.automation.c9.base.BaseReader;
-import com.solvd.lab.v2.automation.c9.exception.UnableToCloseExcepton;
-import com.solvd.lab.v2.automation.c9.exception.UnableToReadException;
-import com.solvd.lab.v2.automation.c9.interfaces.Reader;
+import com.solvd.lab.v2.automation.c9.file.base.BaseReader;
+import com.solvd.lab.v2.automation.c9.file.exception.UnableToCloseExcepton;
+import com.solvd.lab.v2.automation.c9.file.interfaces.Reader;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class BufferedTextFileReader extends BaseReader implements Reader {
 
@@ -20,9 +16,9 @@ public class BufferedTextFileReader extends BaseReader implements Reader {
         super(path);
     }
 
-    public String read() throws UnableToReadException, UnableToCloseExcepton {
+    public String read() throws UnableToCloseExcepton {
         BufferedReader objReader = null;
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
         try {
             String strCurrentLine;
 
@@ -32,10 +28,8 @@ public class BufferedTextFileReader extends BaseReader implements Reader {
 
                 sb.append(strCurrentLine);
             }
-            return sb.toString();
 
         } catch (IOException e) {
-
             e.printStackTrace();
 
         } finally {
@@ -48,6 +42,6 @@ public class BufferedTextFileReader extends BaseReader implements Reader {
                 throw new UnableToCloseExcepton("Unable to close");
             }
         }
-        throw new UnableToReadException("Unable to read");
+        return sb.toString();
     }
 }
