@@ -1,4 +1,4 @@
-package com.solvd.lab.v2.automation.c9.exception;
+package com.solvd.lab.v2.automation.io.exception;
 
 public class UnableToReadException extends Exception{
     public UnableToReadException(String message) {

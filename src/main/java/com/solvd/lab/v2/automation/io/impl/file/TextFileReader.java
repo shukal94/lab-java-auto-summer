@@ -1,8 +1,8 @@
-package com.solvd.lab.v2.automation.c9.reader.impl;
+package com.solvd.lab.v2.automation.io.impl.file;
 
-import com.solvd.lab.v2.automation.c9.base.BaseReader;
-import com.solvd.lab.v2.automation.c9.exception.UnableToReadException;
-import com.solvd.lab.v2.automation.c9.interfaces.Reader;
+import com.solvd.lab.v2.automation.io.base.BaseReader;
+import com.solvd.lab.v2.automation.io.exception.UnableToReadException;
+import com.solvd.lab.v2.automation.io.interfaces.Reader;
 
 import java.io.File;
 import java.io.FileReader;
