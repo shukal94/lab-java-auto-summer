@@ -1,13 +1,13 @@
-package com.solvd.lab.v2.automation.c9;
+package com.solvd.lab.v2.automation.classes.c9;
 
-import com.solvd.lab.v2.automation.c9.file.exception.UnableToCloseExcepton;
-import com.solvd.lab.v2.automation.c9.file.exception.UnableToReadException;
-import com.solvd.lab.v2.automation.c9.file.exception.UnableToWriteException;
-import com.solvd.lab.v2.automation.c9.file.impl.BufferedTextFileReader;
-import com.solvd.lab.v2.automation.c9.file.impl.PropertyFileReader;
-import com.solvd.lab.v2.automation.c9.file.impl.StreamTextFileReader;
-import com.solvd.lab.v2.automation.c9.file.impl.TextFileReader;
-import com.solvd.lab.v2.automation.c9.file.impl.StreamTextFileWriter;
+import com.solvd.lab.v2.automation.io.exception.UnableToCloseExcepton;
+import com.solvd.lab.v2.automation.io.exception.UnableToReadException;
+import com.solvd.lab.v2.automation.io.exception.UnableToWriteException;
+import com.solvd.lab.v2.automation.io.impl.file.BufferedTextFileReader;
+import com.solvd.lab.v2.automation.io.impl.file.PropertyFileReader;
+import com.solvd.lab.v2.automation.io.impl.file.StreamTextFileReader;
+import com.solvd.lab.v2.automation.io.impl.file.TextFileReader;
+import com.solvd.lab.v2.automation.io.impl.file.StreamTextFileWriter;
 
 import java.io.File;
 import java.util.Objects;
@@ -41,7 +41,8 @@ public class Main {
 
         // 4-th way to init reader
         try {
-            System.out.println(new TextFileReader(f).read());
+            String s = new TextFileReader("src/main/resources/dots.txt").read();
+            System.out.println(s);
         } catch (UnableToReadException e) {
             System.exit(4);
         }

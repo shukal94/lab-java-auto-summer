@@ -1,7 +1,7 @@
-package com.solvd.lab.v2.automation.c9.file.impl;
+package com.solvd.lab.v2.automation.io.impl.file;
 
-import com.solvd.lab.v2.automation.c9.file.exception.UnableToWriteException;
-import com.solvd.lab.v2.automation.c9.file.interfaces.Writer;
+import com.solvd.lab.v2.automation.io.exception.UnableToWriteException;
+import com.solvd.lab.v2.automation.io.interfaces.Writer;
 
 import java.io.File;
 import java.io.FileOutputStream;

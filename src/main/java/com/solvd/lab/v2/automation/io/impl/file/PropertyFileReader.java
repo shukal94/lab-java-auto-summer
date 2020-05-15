@@ -1,8 +1,8 @@
-package com.solvd.lab.v2.automation.c9.file.impl;
+package com.solvd.lab.v2.automation.io.impl.file;
 
-import com.solvd.lab.v2.automation.c9.file.base.BaseReader;
-import com.solvd.lab.v2.automation.c9.file.exception.UnableToReadException;
-import com.solvd.lab.v2.automation.c9.file.interfaces.Reader;
+import com.solvd.lab.v2.automation.io.base.BaseReader;
+import com.solvd.lab.v2.automation.io.exception.UnableToReadException;
+import com.solvd.lab.v2.automation.io.interfaces.Reader;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,8 +25,8 @@ public class PropertyFileReader extends BaseReader implements Reader {
     public String read() throws UnableToReadException {
         this.props = new Properties();
         try {
-            if (!this.path.contains(".properties")) {
-                throw new RuntimeException("Provide the file in proper format");
+            if (!this.path.endsWith(".properties")) {
+                throw new RuntimeException("Provide the io in proper format");
             }
             InputStream inputStream = new FileInputStream(new File(this.path).getAbsolutePath());
             this.props.load(inputStream);
