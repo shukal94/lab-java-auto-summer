@@ -12,6 +12,13 @@ public class SerializationUtil {
     private static final String DATA_FILE_PATH_RESPONSE1 = System.getProperty("user.dir") + "/src/main/resources/serial_response1";
     private static final String DATA_FILE_PATH_RESPONSE2 = System.getProperty("user.dir") + "/src/main/resources/serial_response2";
 
+    public static ObjectReader getReaderResponse1() {
+        return READER_RESPONSE1;
+    }
+
+    public static ObjectReader getReaderResponse2() {
+        return READER_RESPONSE2;
+    }
 
     public static ObjectReader getREADER1() {
         return READER1;

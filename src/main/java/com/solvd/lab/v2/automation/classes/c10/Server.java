@@ -19,7 +19,7 @@ public class Server {
     private static final List<String> AVAILABLE_CLIENTS = Arrays.asList("user");
     private static final String HOST = "127.0.0.1";
     private static final int PORT1 = 8000;
-    private static final int PORT2 = 7000;
+    private static final int PORT2 = 8000;
 
 
     public static void main(String[] args) {
@@ -46,10 +46,10 @@ public class Server {
                 ConnectMessage msg = (ConnectMessage) obj;
                 if (msg.getHost().equals(HOST) && msg.getPort() == PORT1 && AVAILABLE_CLIENTS.contains(msg.getToken())) {
                     LOGGER.info(msg.getMessage());
-                    Packable resp = new ResponseMessage(HOST, PORT2, "", msg.getMessage(), 200);
+                    Packable resp = new ResponseMessage(HOST, PORT2, "", "sent", 200);
                     if(obj == obje[0]){
-                        sendResponse(resp, SerializationUtil.getREADER1());
-                    } else sendResponse(resp, SerializationUtil.getREADER2());
+                        sendResponse(resp, SerializationUtil.getReaderResponse2());
+                    } else sendResponse(resp, SerializationUtil.getReaderResponse1());
                 }
             }
         }

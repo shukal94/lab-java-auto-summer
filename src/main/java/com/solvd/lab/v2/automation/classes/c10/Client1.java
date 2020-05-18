@@ -21,7 +21,7 @@ import java.util.Scanner;
  * 4. refactoring
  * 5. fixes
  */
-public class Client {
+public class Client1 {
 
     public static void main(String[] args) {
         final String HOST = PropertyUtil.getValueByKey(C10Constant.HOSTNAME);
