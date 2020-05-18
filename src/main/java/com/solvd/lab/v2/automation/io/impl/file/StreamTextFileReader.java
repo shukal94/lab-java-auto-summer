@@ -20,8 +20,8 @@ public class StreamTextFileReader extends BaseReader implements Reader {
     public String read() throws UnableToReadException{
         try(FileInputStream fin = new FileInputStream(this.file)) { // try withou resources
             byte[] buffer = new byte[fin.available()];
-            fin.read(buffer, 0, buffer.length);
-        return new String(buffer);
+            fin.read(buffer);
+            return new String(buffer);
         } catch (IOException e) {
             e.printStackTrace();
         }

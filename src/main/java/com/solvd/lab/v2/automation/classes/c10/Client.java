@@ -1,7 +1,6 @@
 package com.solvd.lab.v2.automation.classes.c10;
 
-import com.solvd.lab.v2.automation.classes.c10.bo.ConnectMessage;
-import com.solvd.lab.v2.automation.classes.c10.bo.ResponseMessage;
+import com.solvd.lab.v2.automation.classes.c10.bo.*;
 import com.solvd.lab.v2.automation.constant.C10Constant;
 import com.solvd.lab.v2.automation.io.interfaces.Packable;
 import com.solvd.lab.v2.automation.util.PropertyUtil;
