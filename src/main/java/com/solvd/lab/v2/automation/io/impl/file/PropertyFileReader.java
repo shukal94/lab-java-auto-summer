@@ -12,11 +12,9 @@ import java.util.Properties;
 
 public class PropertyFileReader extends BaseReader implements Reader {
     private Properties props;
-
     public PropertyFileReader(File file) {
         super(file);
     }
-
     public PropertyFileReader(String path) {
         super(path);
     }
