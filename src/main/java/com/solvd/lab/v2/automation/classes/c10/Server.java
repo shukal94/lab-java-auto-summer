@@ -3,6 +3,7 @@ package com.solvd.lab.v2.automation.classes.c10;
 import com.solvd.lab.v2.automation.classes.c10.bo.ConnectMessage;
 import com.solvd.lab.v2.automation.classes.c10.bo.ResponseMessage;
 import com.solvd.lab.v2.automation.constant.TimeConstant;
+import com.solvd.lab.v2.automation.io.impl.stream.ObjectReader;
 import com.solvd.lab.v2.automation.io.interfaces.Packable;
 import com.solvd.lab.v2.automation.util.SerializationUtil;
 
@@ -45,17 +46,18 @@ public class Server {
                 ConnectMessage msg = (ConnectMessage) obj;
                 if (msg.getHost().equals(HOST) && msg.getPort() == PORT1 && AVAILABLE_CLIENTS.contains(msg.getToken())) {
                     LOGGER.info(msg.getMessage());
-                    Packable resp = new ResponseMessage(HOST, PORT2, "", "sent", 200);
-                    sendResponse(resp);
-
+                    Packable resp = new ResponseMessage(HOST, PORT2, "", msg.getMessage(), 200);
+                    if(obj == obje[0]){
+                        sendResponse(resp, SerializationUtil.getREADER1());
+                    } else sendResponse(resp, SerializationUtil.getREADER2());
                 }
             }
         }
 
     }
 
-    private static void sendResponse(Packable pkg) {
-        SerializationUtil.writeResponse(pkg);
+    private static void sendResponse(Packable pkg, ObjectReader objr) {
+        SerializationUtil.writeResponse(pkg, objr);
     }
 
 }

@@ -2,6 +2,7 @@ package com.solvd.lab.v2.automation.classes.c10;
 
 import com.solvd.lab.v2.automation.classes.c10.bo.*;
 import com.solvd.lab.v2.automation.constant.C10Constant;
+import com.solvd.lab.v2.automation.io.impl.stream.ObjectReader;
 import com.solvd.lab.v2.automation.io.interfaces.Packable;
 import com.solvd.lab.v2.automation.util.PropertyUtil;
 import com.solvd.lab.v2.automation.util.SerializationUtil;
@@ -51,6 +52,6 @@ public class Client {
     }
 
     private static Packable getResponse() {
-        return SerializationUtil.readResponse();
+        return SerializationUtil.readResponse(SerializationUtil.getREADER1());
     }
 }

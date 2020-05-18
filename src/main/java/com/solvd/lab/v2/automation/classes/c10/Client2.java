@@ -28,7 +28,8 @@ public class Client2 {
         }
         while(true){
             connect(HOST, PORT, TOKEN);
-            System.out.println(((ResponseMessage) getResponse()).getResp());
+            String hey = ((ResponseMessage) getResponse()).getResp();
+            System.out.println(hey);
         }
     }
 
@@ -41,6 +42,6 @@ public class Client2 {
     }
 
     private static Packable getResponse() {
-        return SerializationUtil.readResponse();
+        return SerializationUtil.readResponse(SerializationUtil.getREADER2());
     }
 }
