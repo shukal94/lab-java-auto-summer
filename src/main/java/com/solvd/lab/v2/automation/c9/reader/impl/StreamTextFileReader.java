@@ -20,7 +20,6 @@ public class StreamTextFileReader extends BaseReader implements Reader {
         try(FileInputStream fin = new FileInputStream(this.file)) { // try withou resources
             byte[] buffer = new byte[fin.available()];
             fin.read(buffer, 0, buffer.length);
-            //return Arrays.toString(buffer); wtf???
             return new String(buffer);
         } catch (IOException e) {
             e.printStackTrace();
