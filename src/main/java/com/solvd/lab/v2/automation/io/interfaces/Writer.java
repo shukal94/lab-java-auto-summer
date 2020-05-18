@@ -1,6 +1,6 @@
-package com.solvd.lab.v2.automation.c9.interfaces;
+package com.solvd.lab.v2.automation.io.interfaces;
 
-import com.solvd.lab.v2.automation.c9.exception.UnableToWriteException;
+import com.solvd.lab.v2.automation.io.exception.UnableToWriteException;
 
 public interface Writer {
     void write(String path, String text) throws UnableToWriteException;
