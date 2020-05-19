@@ -3,6 +3,7 @@ package com.solvd.lab.v2.automation.classes.c10;
 import com.solvd.lab.v2.automation.classes.c10.bo.ConnectMessage;
 import com.solvd.lab.v2.automation.classes.c10.bo.ResponseMessage;
 import com.solvd.lab.v2.automation.constant.C10Constant;
+import com.solvd.lab.v2.automation.constant.TimeConstant;
 import com.solvd.lab.v2.automation.io.interfaces.Packable;
 import com.solvd.lab.v2.automation.util.PropertyUtil;
 import com.solvd.lab.v2.automation.util.SerializationUtil;
@@ -27,7 +28,13 @@ public class Client2 {
             e.printStackTrace();
         }
         while(true){
-            connect(HOST, PORT, TOKEN);
+
+            try {
+                connect(HOST, PORT, TOKEN);
+                Thread.sleep(TimeConstant.TIME_TO_DELAY+1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             String hey = ((ResponseMessage) getResponse()).getResp();
             System.out.println(hey);
         }
@@ -36,12 +43,21 @@ public class Client2 {
     private static void connect(final String host, final int port, final String token) {
         Scanner scan = new Scanner(System.in);
         System.out.print("you: ");
-        String msg = scan.next();
+        String msg = scan.nextLine();
         Packable pkg = new ConnectMessage(host, port, token, msg);
         SerializationUtil.writeObject(pkg, "src/main/resources/client2");
+
+    }
+
+    private  static void listen(){
+        Packable obj = SerializationUtil.readObject(SerializationUtil.getReaderResponse1());
+        if (obj != null) {
+            ConnectMessage msg = (ConnectMessage) obj;
+            System.out.println(msg.getMessage());
+        }
     }
 
     private static Packable getResponse() {
-        return SerializationUtil.readResponse(SerializationUtil.getREADER2());
+        return SerializationUtil.readResponse(SerializationUtil.getReaderResponse2());
     }
 }

@@ -12,21 +12,10 @@ public class SerializationUtil {
     private static final String DATA_FILE_PATH_RESPONSE1 = System.getProperty("user.dir") + "/src/main/resources/serial_response1";
     private static final String DATA_FILE_PATH_RESPONSE2 = System.getProperty("user.dir") + "/src/main/resources/serial_response2";
 
-    public static ObjectReader getReaderResponse1() {
-        return READER_RESPONSE1;
-    }
-
-    public static ObjectReader getReaderResponse2() {
-        return READER_RESPONSE2;
-    }
-
-    public static ObjectReader getREADER1() {
-        return READER1;
-    }
-
-    public static ObjectReader getREADER2() {
-        return READER2;
-    }
+    public static ObjectReader getReaderResponse1() { return READER_RESPONSE1; }
+    public static ObjectReader getReaderResponse2() { return READER_RESPONSE2; }
+    public static ObjectReader getREADER1() { return READER1; }
+    public static ObjectReader getREADER2() { return READER2; }
 
     private static final ObjectReader READER1 = new ObjectReader(DATA_FILE_PATH1);
     private static final ObjectReader READER2 = new ObjectReader(DATA_FILE_PATH2);
@@ -70,5 +59,4 @@ public class SerializationUtil {
             throw new RuntimeException(String.format("%s is unable to write!", objr.getPath()));
         }
     }
-
 }

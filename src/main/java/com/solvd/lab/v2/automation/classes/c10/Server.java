@@ -46,10 +46,13 @@ public class Server {
                 ConnectMessage msg = (ConnectMessage) obj;
                 if (msg.getHost().equals(HOST) && msg.getPort() == PORT1 && AVAILABLE_CLIENTS.contains(msg.getToken())) {
                     LOGGER.info(msg.getMessage());
-                    Packable resp = new ResponseMessage(HOST, PORT2, "", "sent", 200);
-                    if(obj == obje[0]){
-                        sendResponse(resp, SerializationUtil.getReaderResponse2());
-                    } else sendResponse(resp, SerializationUtil.getReaderResponse1());
+                    Packable resp = new ResponseMessage(HOST, PORT2, "", msg.getMessage(), 200);
+                    if (obj == obje[0]){
+                        SerializationUtil.writeObject(resp,SerializationUtil.getReaderResponse2().getPath());
+                        clearBuffer(SerializationUtil.getREADER1());
+                    } else {
+                        SerializationUtil.writeObject(resp,SerializationUtil.getReaderResponse1().getPath());
+                        clearBuffer(SerializationUtil.getREADER2());                    }
                 }
             }
         }
@@ -58,6 +61,10 @@ public class Server {
 
     private static void sendResponse(Packable pkg, ObjectReader objr) {
         SerializationUtil.writeResponse(pkg, objr);
+    }
+
+    public static void clearBuffer(ObjectReader objr){
+        SerializationUtil.writeObject(null, objr.getPath());
     }
 
 }

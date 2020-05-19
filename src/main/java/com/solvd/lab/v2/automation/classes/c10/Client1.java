@@ -2,10 +2,9 @@ package com.solvd.lab.v2.automation.classes.c10;
 
 import com.solvd.lab.v2.automation.classes.c10.bo.*;
 import com.solvd.lab.v2.automation.constant.C10Constant;
-import com.solvd.lab.v2.automation.io.impl.stream.ObjectReader;
+import com.solvd.lab.v2.automation.constant.TimeConstant;
 import com.solvd.lab.v2.automation.io.interfaces.Packable;
-import com.solvd.lab.v2.automation.util.PropertyUtil;
-import com.solvd.lab.v2.automation.util.SerializationUtil;
+import com.solvd.lab.v2.automation.util.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,7 +26,6 @@ public class Client1 {
         final String HOST = PropertyUtil.getValueByKey(C10Constant.HOSTNAME);
         final int PORT = Integer.valueOf(PropertyUtil.getValueByKey(C10Constant.PORT));
         final String TOKEN = PropertyUtil.getValueByKey(C10Constant.TOKEN);
-
         String path = "src/main/resources/client1";
         Path p = Paths.get(path);
         try {
@@ -37,21 +35,25 @@ public class Client1 {
         }
 
         while(true){
-            connect(HOST, PORT, TOKEN);
+            try{
+                connect(HOST, PORT, TOKEN);
+                Thread.sleep(TimeConstant.TIME_TO_DELAY+100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             System.out.println(((ResponseMessage) getResponse()).getResp());
         }
-
     }
 
     private static void connect(final String host, final int port, final String token) {
         Scanner scan = new Scanner(System.in);
         System.out.print("you: ");
-        String msg = scan.next();
+        String msg = scan.nextLine();
         Packable pkg = new ConnectMessage(host, port, token, msg);
-        SerializationUtil.writeObject(pkg, "src/main/resources/client1");
+        SerializationUtil.writeObject(pkg, SerializationUtil.getREADER1().getPath());
     }
 
     private static Packable getResponse() {
-        return SerializationUtil.readResponse(SerializationUtil.getREADER1());
+        return SerializationUtil.readResponse(SerializationUtil.getReaderResponse1());
     }
 }
