@@ -41,7 +41,7 @@ public class Client1 {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println(((ResponseMessage) getResponse()).getResp());
+//            System.out.println(((ResponseMessage) getResponse()).getResp());
         }
     }
 
@@ -53,7 +53,7 @@ public class Client1 {
         SerializationUtil.writeObject(pkg, SerializationUtil.getREADER1().getPath());
     }
 
-    private static Packable getResponse() {
-        return SerializationUtil.readResponse(SerializationUtil.getReaderResponse1());
+    public static Packable getResponse() {
+        return SerializationUtil.readResponse(SerializationUtil.getREADER_RESPONSE1());
     }
 }

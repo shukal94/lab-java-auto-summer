@@ -48,19 +48,28 @@ public class Server {
                     LOGGER.info(msg.getMessage());
                     Packable resp = new ResponseMessage(HOST, PORT2, "", msg.getMessage(), 200);
                     if (obj == obje[0]){
-                        SerializationUtil.writeObject(resp,SerializationUtil.getReaderResponse2().getPath());
+                        SerializationUtil.writeObject(resp,SerializationUtil.getREADER_RESPONSE2().getPath());
                         clearBuffer(SerializationUtil.getREADER1());
+                        try {
+                            Thread.sleep(TimeConstant.TIME_TO_DELAY+1500);
+                            clearBuffer(SerializationUtil.getREADER_RESPONSE2());
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     } else {
-                        SerializationUtil.writeObject(resp,SerializationUtil.getReaderResponse1().getPath());
-                        clearBuffer(SerializationUtil.getREADER2());                    }
+                        SerializationUtil.writeObject(resp,SerializationUtil.getREADER_RESPONSE1().getPath());
+                        clearBuffer(SerializationUtil.getREADER2());
+                        try {
+                            Thread.sleep(TimeConstant.TIME_TO_DELAY+1500);
+                            clearBuffer(SerializationUtil.getREADER_RESPONSE1());
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
         }
 
-    }
-
-    private static void sendResponse(Packable pkg, ObjectReader objr) {
-        SerializationUtil.writeResponse(pkg, objr);
     }
 
     public static void clearBuffer(ObjectReader objr){

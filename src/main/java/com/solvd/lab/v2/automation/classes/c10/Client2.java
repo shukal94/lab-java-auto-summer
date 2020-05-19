@@ -35,8 +35,8 @@ public class Client2 {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            String hey = ((ResponseMessage) getResponse()).getResp();
-            System.out.println(hey);
+ //           String hey = ((ResponseMessage) getResponse()).getResp();
+ //           System.out.println(hey);
         }
     }
 
@@ -49,15 +49,7 @@ public class Client2 {
 
     }
 
-    private  static void listen(){
-        Packable obj = SerializationUtil.readObject(SerializationUtil.getReaderResponse1());
-        if (obj != null) {
-            ConnectMessage msg = (ConnectMessage) obj;
-            System.out.println(msg.getMessage());
-        }
-    }
-
-    private static Packable getResponse() {
-        return SerializationUtil.readResponse(SerializationUtil.getReaderResponse2());
+    public static Packable getResponse() {
+        return SerializationUtil.readResponse(SerializationUtil.getREADER_RESPONSE2());
     }
 }
