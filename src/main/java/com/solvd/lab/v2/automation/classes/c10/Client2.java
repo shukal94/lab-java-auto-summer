@@ -28,15 +28,7 @@ public class Client2 {
             e.printStackTrace();
         }
         while(true){
-
-            try {
                 connect(HOST, PORT, TOKEN);
-                Thread.sleep(TimeConstant.TIME_TO_DELAY+1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
- //           String hey = ((ResponseMessage) getResponse()).getResp();
- //           System.out.println(hey);
         }
     }
 

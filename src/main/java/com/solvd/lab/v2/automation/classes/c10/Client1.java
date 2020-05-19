@@ -35,13 +35,7 @@ public class Client1 {
         }
 
         while(true){
-            try{
                 connect(HOST, PORT, TOKEN);
-                Thread.sleep(TimeConstant.TIME_TO_DELAY+100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-//            System.out.println(((ResponseMessage) getResponse()).getResp());
         }
     }
 

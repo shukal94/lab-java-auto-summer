@@ -25,12 +25,7 @@ public class Server {
     public static void main(String[] args) {
         LOGGER.info(String.format("Listening on %s:%d:%d", HOST, PORT1, PORT2));
         while (true) {
-            try {
-                listen();
-                Thread.sleep(TimeConstant.TIME_TO_DELAY);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            listen();
         }
     }
 
@@ -50,21 +45,9 @@ public class Server {
                     if (obj == obje[0]){
                         SerializationUtil.writeObject(resp,SerializationUtil.getREADER_RESPONSE2().getPath());
                         clearBuffer(SerializationUtil.getREADER1());
-                        try {
-                            Thread.sleep(TimeConstant.TIME_TO_DELAY+1500);
-                            clearBuffer(SerializationUtil.getREADER_RESPONSE2());
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
                     } else {
                         SerializationUtil.writeObject(resp,SerializationUtil.getREADER_RESPONSE1().getPath());
                         clearBuffer(SerializationUtil.getREADER2());
-                        try {
-                            Thread.sleep(TimeConstant.TIME_TO_DELAY+1500);
-                            clearBuffer(SerializationUtil.getREADER_RESPONSE1());
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
                     }
                 }
             }
