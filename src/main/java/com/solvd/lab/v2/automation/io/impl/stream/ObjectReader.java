@@ -7,11 +7,7 @@ import com.solvd.lab.v2.automation.io.interfaces.StreamReader;
 
 import java.io.*;
 
-public class ObjectReader extends BaseReader implements StreamReader {
-    public ObjectReader(File file) {
-        super(file);
-    }
-
+public class ObjectReader extends BaseReader implements StreamReader, Packable {
     public ObjectReader(String path) {
         super(path);
     }

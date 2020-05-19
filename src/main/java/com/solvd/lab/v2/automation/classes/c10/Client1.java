@@ -1,16 +1,16 @@
 package com.solvd.lab.v2.automation.classes.c10;
 
-import com.solvd.lab.v2.automation.classes.c10.bo.ConnectMessage;
-import com.solvd.lab.v2.automation.classes.c10.bo.ResponseMessage;
+import com.solvd.lab.v2.automation.classes.c10.bo.*;
 import com.solvd.lab.v2.automation.constant.C10Constant;
+import com.solvd.lab.v2.automation.constant.TimeConstant;
 import com.solvd.lab.v2.automation.io.interfaces.Packable;
-import com.solvd.lab.v2.automation.util.PropertyUtil;
-import com.solvd.lab.v2.automation.util.SerializationUtil;
+import com.solvd.lab.v2.automation.util.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 /**
  * 1. object streams
@@ -20,13 +20,12 @@ import java.nio.file.Paths;
  * 4. refactoring
  * 5. fixes
  */
-public class Client {
+public class Client1 {
 
     public static void main(String[] args) {
         final String HOST = PropertyUtil.getValueByKey(C10Constant.HOSTNAME);
         final int PORT = Integer.valueOf(PropertyUtil.getValueByKey(C10Constant.PORT));
         final String TOKEN = PropertyUtil.getValueByKey(C10Constant.TOKEN);
-
         String path = "src/main/resources/client1";
         Path p = Paths.get(path);
         try {
@@ -35,18 +34,20 @@ public class Client {
             e.printStackTrace();
         }
 
-
-        connect(HOST, PORT, TOKEN);
-        System.out.println(((ResponseMessage) getResponse()).getResp());
+        while(true){
+                connect(HOST, PORT, TOKEN);
+        }
     }
 
     private static void connect(final String host, final int port, final String token) {
-        String msg = "Conn";
+        Scanner scan = new Scanner(System.in);
+        System.out.print("you: ");
+        String msg = scan.nextLine();
         Packable pkg = new ConnectMessage(host, port, token, msg);
-        SerializationUtil.writeObject(pkg);
+        SerializationUtil.writeObject(pkg, SerializationUtil.getREADER1().getPath());
     }
 
-    private static Packable getResponse() {
-        return SerializationUtil.readResponse();
+    public static Packable getResponse() {
+        return SerializationUtil.readResponse(SerializationUtil.getREADER_RESPONSE1());
     }
 }
