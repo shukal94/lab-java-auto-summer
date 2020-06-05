@@ -12,7 +12,7 @@ public class DateAdapter extends XmlAdapter<String, Date> {
 
         @Override
         protected DateFormat initialValue() {
-            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         }
     };
 
